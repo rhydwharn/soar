@@ -13,6 +13,6 @@ jobs:
     - name: Cypress Execution
       uses: cypress-io/github-action@v6
       env:
-        CYPRESS_MAILSLURP_API_KEY: ${{secrets.CYPRESS_MAILSLURP_API_KEY}}
-        CYPRESS_BASEURL: ${{secrets.CYPRESS_BASEURL}}
-        CYPRESS_APIBASEURL: ${{secrets.CYPRESS_APIBASEURL}}
+        CYPRESS_MAILSLURP_API_KEY: ${{secrets.MAILSLURP_API_KEY}}
+        CYPRESS_BASEURL: ${{secrets.BASEURL}}
+        CYPRESS_APIBASEURL: ${{secrets.APIBASEURL}}
