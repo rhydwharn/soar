@@ -28,7 +28,7 @@
             | Instagram |         
             # | Facebook  |
             # | Twitter   |
-@focus 
+
     Scenario Outline:  Registration with existing credentials choosing <option>.
         Given I navigate to regisrtation page
         When I fill in the "fullname"
