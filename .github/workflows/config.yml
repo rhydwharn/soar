@@ -16,7 +16,7 @@ jobs:
       # run: echo "CYPRESS_APIBASEURL-${{secrets.APIBASEURL}}" > .env
 
     - name: Show URL
-    run: console.log('Environment Variables:', process.env);
+    console.log('Environment Variables:', process.env);
       
     - name: Cypress Execution
       uses: cypress-io/github-action@v6
