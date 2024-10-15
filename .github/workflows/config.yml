@@ -10,10 +10,16 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Show Environment Variables
+  run: |
+    echo "CYPRESS_BASEURL=${{ secrets.BASEURL }}"
+    echo "CYPRESS_APIBASEURL=${{ secrets.APIBASEURL }}"
+
     - name: Create .env file
-      run: echo "CYPRESS_BASEURL=${{ secrets.BASEURL }}" > .env
-      # run: echo "CYPRESS_MAILSLURP_API_KEY=${{secrets.MAILSLURP_API_KEY}}" > .env
-      # run: echo "CYPRESS_APIBASEURL-${{secrets.APIBASEURL}}" > .env
+  run: |
+    echo "CYPRESS_BASEURL=${{ secrets.BASEURL }}" > .env
+    echo "CYPRESS_MAILSLURP_API_KEY=${{ secrets.MAILSLURP_API_KEY }}" >> .env
+    echo "CYPRESS_APIBASEURL=${{ secrets.APIBASEURL }}" >> .env
       
     - name: Cypress Execution
       uses: cypress-io/github-action@v6
