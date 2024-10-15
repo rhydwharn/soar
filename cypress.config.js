@@ -15,7 +15,7 @@ async function setupNodeEvents(on, config) {
 
 module.exports = defineConfig({
     e2e: {
-        // baseUrl: 'https://staging.trymima.com',
+        baseUrl: process.env.CYPRESS_BASE_URL,
         specPattern: '**/*.feature',
         defaultCommandTimeout: 10000,
         viewportWidth: 1600,
