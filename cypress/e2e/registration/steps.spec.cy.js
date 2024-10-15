@@ -1,6 +1,6 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor'
 const { faker } = require("@faker-js/faker")
-const baseUrl = Cypress.env('baseUrl');
+const baseUrl = Cypress.env('BASEURL');
 
 let data
 let details
