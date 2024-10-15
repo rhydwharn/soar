@@ -14,9 +14,6 @@ jobs:
       run: echo "CYPRESS_BASEURL=${{ secrets.BASEURL }}" > .env
       # run: echo "CYPRESS_MAILSLURP_API_KEY=${{secrets.MAILSLURP_API_KEY}}" > .env
       # run: echo "CYPRESS_APIBASEURL-${{secrets.APIBASEURL}}" > .env
-
-    - name: Show URL
-    console.log('Environment Variables:', process.env);
       
     - name: Cypress Execution
       uses: cypress-io/github-action@v6
