@@ -28,6 +28,8 @@ jobs:
 
       - name: Cypress Execution
         uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
         env:
           CYPRESS_MAILSLURP_API_KEY: ${{ secrets.MAILSLURP_API_KEY }}
           CYPRESS_BASEURL: "https://staging.trymima.com"
