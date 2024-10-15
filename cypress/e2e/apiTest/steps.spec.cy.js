@@ -19,7 +19,7 @@ Given('I generate a valid user payload', () => {
 Then('I send the registration request', () => {
   cy.api({
     method: 'POST',
-    url: Cypress.env("CYPRESS_APIBASEURL")+registrationPath,
+    url: Cypress.env("APIBASEURL")+registrationPath,
     body: userData,
     //Ensures that the script does not stop when the status code is not 200
     failOnStatusCode: false
@@ -35,7 +35,7 @@ Then('I send the registration request', () => {
 Then('I use the credentials created, to login', () => {
   cy.api({
     method: 'POST',
-    url: Cypress.env("CYPRESS_APIBASEURL")+loginPath,
+    url: Cypress.env("APIBASEURL")+loginPath,
     body: {
       email: userData.email,
       password: userData.password,
@@ -62,7 +62,7 @@ Then('I should receive a 200 status code and valid login', () => {
   cy.api({
     method: 'POST',
     body: userData,
-    url: Cypress.env("CYPRESS_APIBASEURL")+loginPath,
+    url: Cypress.env("APIBASEURL")+loginPath,
     headers: {
       Authorization: `Bearer ${authToken}`,
       //Ensures that the script does not stop when the status code is not 200
