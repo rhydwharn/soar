@@ -19,5 +19,5 @@ jobs:
       uses: cypress-io/github-action@v6
       env:
         CYPRESS_MAILSLURP_API_KEY: ${{secrets.MAILSLURP_API_KEY}}
-        CYPRESS_BASEURL: ${{secrets.BASEURL}}
-        CYPRESS_APIBASEURL: ${{secrets.APIBASEURL}}
+        CYPRESS_BASEURL: 'https://staging.trymima.com'
+        CYPRESS_APIBASEURL: 'https://reqres.in'
