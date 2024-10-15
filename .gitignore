@@ -10,4 +10,4 @@ node_modules/
 cypress/videos/
 cypress/screenshots/
 #Other Files
-cypress/cypress.env.json
+./cypress.env.json
