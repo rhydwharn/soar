@@ -15,7 +15,7 @@ async function setupNodeEvents(on, config) {
 
 module.exports = defineConfig({
     e2e: {
-        baseUrl: process.env.CYPRESS_BASE_URL,
+        baseUrl: process.env.CYPRESS_BASEURL || 'http://localhost:3000', 
         specPattern: '**/*.feature',
         defaultCommandTimeout: 10000,
         viewportWidth: 1600,
