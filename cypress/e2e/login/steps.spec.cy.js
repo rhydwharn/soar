@@ -1,5 +1,5 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor'
-const baseUrl = Cypress.env('baseUrl');
+const baseUrl = Cypress.env('BASEURL');
 
 Given(/^I am able to navigate to the login page and change the "([^"]*)"$/, (viewport) => {
     //Set the dimension of the device.
