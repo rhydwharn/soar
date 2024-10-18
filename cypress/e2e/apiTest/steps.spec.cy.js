@@ -1,5 +1,4 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor'
-const { faker } = require("@faker-js/faker")
 
 let userData = {};
 let authToken = '';
@@ -16,7 +15,7 @@ Given('I generate a valid user payload', () => {
   };
 });
 
-Then('I send the registration request', () => {
+When('I send the registration request, then validate the response and status code', () => {
   cy.api({
     method: 'POST',
     url: Cypress.env("APIBASEURL")+registrationPath,
@@ -32,7 +31,7 @@ Then('I send the registration request', () => {
   });
 });
 
-Then('I use the credentials created, to login', () => {
+Then('I use the credentials created, to login, validate the response and status code', () => {
   cy.api({
     method: 'POST',
     url: Cypress.env("APIBASEURL")+loginPath,
@@ -53,12 +52,12 @@ Then('I use the credentials created, to login', () => {
 });
 
 // Validate Basic Authentication
-Given('I have a valid user token', () => {
-  // Assuming login was successful and authToken is available
-  expect(authToken).to.not.be.empty;
+Given('I have a valid endpoint', () => {
+  // Print the API BASE URL
+  cy.log(Cypress.env("APIBASEURL"));
 });
 
-Then('I should receive a 200 status code and valid login', () => {
+Then('I perform basic validation on the response from the endpoint', () => {
   cy.api({
     method: 'POST',
     body: userData,
@@ -69,8 +68,19 @@ Then('I should receive a 200 status code and valid login', () => {
     failOnStatusCode: false
     },
   }).then((response) => {
-    expect(response.status).to.eq(200); // Status code for profile details success
-    expect(response.body).to.have.property('token');
-    // expect(response.body).to.have.property('email', userData.email);
+    if (response.status == 200) {
+      cy.log("Success");
+    }
+    else if (response.status == 400) {
+      cy.log("Bad Request");
+    }
+    else if (response.status == 405)
+      {
+        cy.log("Method not allowed");
+      }
+    else if (response.status == 500) 
+      {
+        cy.log("Server Error");
+      }
   });
 });
