@@ -10,7 +10,7 @@ let login
 const interceptedRequests = [];
 
 
-beforeEach(() => {
+before(() => {
     //Page selectors fixture file
     cy.fixture('selectors').then(sel => {
         data = sel
