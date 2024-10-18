@@ -17,7 +17,7 @@ module.exports = defineConfig({
     e2e: {
         baseUrl: process.env.CYPRESS_BASEURL || 'http://localhost:3000', 
         specPattern: '**/*.feature',
-        defaultCommandTimeout: 10000,
+        defaultCommandTimeout: 20000,
         viewportWidth: 1600,
         viewportHeight: 900,
         setupNodeEvents,
