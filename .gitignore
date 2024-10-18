@@ -11,4 +11,4 @@ cypress/videos/
 cypress/screenshots/
 #Other Files
 cypress.env.json
-reports
+reports/
