@@ -10,4 +10,5 @@ node_modules/
 cypress/videos/
 cypress/screenshots/
 #Other Files
-./cypress.env.json
+cypress.env.json
+reports

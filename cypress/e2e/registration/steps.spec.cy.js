@@ -1,5 +1,4 @@
-import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor'
-const { faker } = require("@faker-js/faker")
+import { Given, When, Then, After } from '@badeball/cypress-cucumber-preprocessor'
 const baseUrl = Cypress.env('BASEURL');
 
 let data
@@ -8,8 +7,10 @@ let basic
 let other
 let identification
 let login
+const interceptedRequests = [];
 
-before(() => {
+
+beforeEach(() => {
     //Page selectors fixture file
     cy.fixture('selectors').then(sel => {
         data = sel
@@ -22,6 +23,19 @@ before(() => {
     cy.fixture('credentials').then(cred => {
         details = cred
     })
+
+
+    // Intercept all network requests
+    cy.intercept('*', (req) => {
+        req.continue((res) => {  // Continue the request and get the response
+            interceptedRequests.push({
+                method: req.method,
+                url: req.url,
+                statusCode: res.statusCode,
+                responseBody: res.body   // Capture the response body
+            });
+        });
+    });
 })
 
 Given(/^I navigate to regisrtation page$/, () => {
@@ -31,6 +45,23 @@ Given(/^I navigate to regisrtation page$/, () => {
     // Navigate to the Signup Page
     cy.visit(`${baseUrl}/signup`);
 });
+
+When(/^I am on the hompage$/, () => {
+	return true;
+});
+
+Given(/^I set the screen type for my test "([^"]*)"$/, (viewport) => {
+    //Set the dimension of the device.
+    //The dimensions have been declared on the feature file
+    cy.viewport(viewport);
+});
+
+
+Then(/^I navigate to the login page$/, () => {
+    // Navigate to the login page
+    cy.visit(`${baseUrl}/login`);
+});
+
 
 Then(/^I click "([^"]*)" Button$/, (element) => {
     //Custom Action to Click Specified elements
@@ -83,3 +114,11 @@ Then(/^I validate "([^"]*)"$/, (args1) => {
     //Custom Command to validate error when email already exist
     cy.validateError(args1)
 });
+
+After(() => {
+    // Allow time for all requests to be made
+    cy.wait(5000);  // Adjust time based on your website's load time
+
+    // After all requests are intercepted, write them to a JSON file
+    cy.writeFile('cypress/fixtures/intercepted_endpoints.json', interceptedRequests);
+})
